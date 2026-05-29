@@ -1,0 +1,58 @@
+name: Publish Doxygen to GitHub Pages
+
+# Build the Doxygen HTML on every push to the default branch and publish
+# it to GitHub Pages. To enable: in the repository settings, set
+# Settings -> Pages -> Source = "GitHub Actions". No other configuration
+# is needed; the workflow uses the official actions/deploy-pages action
+# and the GITHUB_TOKEN that GitHub provides automatically.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Only one concurrent Pages deployment at a time. Cancel in-progress
+# runs when a newer commit lands so we never publish a stale doc set.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen + Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends doxygen graphviz
+
+      - name: Run Doxygen
+        working-directory: src
+        run: doxygen Doxyfile
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Doxyfile sets OUTPUT_DIRECTORY=docs, HTML_OUTPUT=html, so the
+          # generated site lives at src/docs/html relative to the repo
+          # root. Adjust if you move the Doxyfile.
+          path: src/docs/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

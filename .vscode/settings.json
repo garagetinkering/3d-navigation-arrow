@@ -1,0 +1,8 @@
+{
+    "idf.openOcdConfigs": [
+        "board/esp32s3-builtin.cfg"
+    ],
+    "idf.portWin": "COM16",
+    "idf.flashType": "UART",
+    "idf.currentSetup": "C:\\Users\\hello\\esp\\v5.4.1\\esp-idf"
+}

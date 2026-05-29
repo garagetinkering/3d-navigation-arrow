@@ -1,0 +1,15 @@
+dependencies:
+  idf: '>=5.3'
+  #esp_video:
+  #  version: 0.8.*
+  #  public: true
+
+  #esp_lcd_jd9365: '*'
+  espressif/arduino-esp32: '*'
+  lvgl/lvgl: ~9.5.0
+  # Changed from ==1.1.0 to ^1.1.0 to ensure latest struct definitions
+  espressif/esp_lcd_touch: ^1.2.1
+  espressif/esp_lcd_touch_gt911: ^1.2.0
+  espressif/esp_lcd_st7701: ^2.0.2
+  espressif/esp_io_expander_tca9554: ==2.0.3
+  espressif/esp_lcd_panel_io_additions: ^1.0.1

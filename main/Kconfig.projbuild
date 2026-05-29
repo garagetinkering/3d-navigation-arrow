@@ -1,0 +1,61 @@
+menu "Project Configuration"
+
+    menu "LCD Hardware Settings"
+        config EXAMPLE_LCD_GPIO_SCLK
+            int "LCD SPI Clock Pin"
+            default 12
+            range 0 48
+
+        config EXAMPLE_LCD_GPIO_MOSI
+            int "LCD SPI MOSI Pin"
+            default 13
+            range 0 48
+
+        config EXAMPLE_LCD_GPIO_RST
+            int "LCD Reset Pin"
+            default 1
+            range -1 48
+
+        config EXAMPLE_LCD_GPIO_DC
+            int "LCD D/C Pin"
+            default 2
+            range 0 48
+
+        config EXAMPLE_LCD_GPIO_CS
+            int "LCD Chip Select Pin"
+            default 10
+            range 0 48
+
+        config EXAMPLE_LCD_GPIO_BL
+            int "LCD Backlight Pin"
+            default 42
+            range -1 48
+    endmenu
+
+    menu "Touch I2C Settings (GT911)"
+        config EXAMPLE_I2C_SCL_PIN
+            int "I2C SCL Pin"
+            default 5
+            range 0 48
+
+        config EXAMPLE_I2C_SDA_PIN
+            int "I2C SDA Pin"
+            default 4
+            range 0 48
+
+        config EXAMPLE_TOUCH_RST_PIN
+            int "Touch Reset Pin"
+            default -1
+            range -1 48
+
+        config EXAMPLE_TOUCH_INT_PIN
+            int "Touch Interrupt Pin"
+            default -1
+            range -1 48
+    endmenu
+
+    config EXAMPLE_LCD_PIXEL_FORMAT_RGB565
+        bool "Use RGB565 Color Format"
+        default y
+
+endmenu

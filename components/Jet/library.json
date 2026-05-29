@@ -1,0 +1,18 @@
+{
+  "name": "Jet",
+  "description": "Portable software 3D renderer and scene pipeline for embedded and desktop targets.",
+  "keywords": "renderer,software-renderer,3d,embedded,esp32,graphics,rasterizer",
+  "repository": {
+    "type": "git",
+    "url": "http://tfs.cubecoders.local/DefaultCollection/MBed3D/_git/MBed3D"
+  },
+  "version": "0.1.0",
+  "frameworks": ["arduino", "espidf"],
+  "platforms": "*",
+  "headers": "Jet.hpp",
+  "build": {
+    "includeDir": "src",
+    "srcDir": "src",
+    "libArchive": false
+  }
+}
